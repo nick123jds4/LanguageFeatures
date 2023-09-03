@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithVisualStudio.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore", "SportsStore\SportsStore.csproj", "{91E6A2DC-9F2F-4889-AD01-F63831D339C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprotsStore.Tests", "SprotsStore.Tests\SprotsStore.Tests.csproj", "{E2884F06-9B5E-4556-9245-32581443B4FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REMOVE_AFTER_USE", "REMOVE_AFTER_USE\REMOVE_AFTER_USE.csproj", "{37651050-59B8-4F54-937F-3C63E671F46F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{91E6A2DC-9F2F-4889-AD01-F63831D339C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E6A2DC-9F2F-4889-AD01-F63831D339C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E6A2DC-9F2F-4889-AD01-F63831D339C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2884F06-9B5E-4556-9245-32581443B4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2884F06-9B5E-4556-9245-32581443B4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2884F06-9B5E-4556-9245-32581443B4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2884F06-9B5E-4556-9245-32581443B4FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37651050-59B8-4F54-937F-3C63E671F46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37651050-59B8-4F54-937F-3C63E671F46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37651050-59B8-4F54-937F-3C63E671F46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37651050-59B8-4F54-937F-3C63E671F46F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

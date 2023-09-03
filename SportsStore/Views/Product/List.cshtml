@@ -1,0 +1,15 @@
+﻿@model SportsStore.Models.ViewModels.ProductsListViewModel
+
+@foreach (var product in Model.Products)
+{
+    @Html.Partial("ProductSummary", product)
+}
+
+<div page-model="@Model.PagingInfo"
+     page-action="List"
+     page-class="btn"
+     page-classes-enabled="true"
+     page-class-normal="btn-secondary"
+     page-class-selected="btn-primary"
+     page-url-category="@Model.CurretnCategory"
+     class="btn-group pull float-end m-1"></div>
