@@ -1,0 +1,36 @@
+﻿@model Person
+@{ 
+    ViewBag.Title = "Create Person";
+    Layout = "_Layout";
+}
+
+<form asp-action="DisplaySummary" method="post">
+    <div class="mp-3">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control" />
+    </div>
+    <div class="mp-3">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="mp-3">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="mp-3">
+        <label asp-for="Role"></label>
+        <select asp-for="Role"
+                asp-items="@new SelectList(Enum.GetNames(typeof(Role)))" class="form-control">
+        </select>
+    </div>
+    <div class="mp-3">
+        <label asp-for="HomeAddress.City"></label>
+        <input asp-for="HomeAddress.City" class="form-control" />
+    </div>
+    <div class="mp-3">
+        <label asp-for="HomeAddress.Country"></label>
+        <input asp-for="HomeAddress.Country" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Sumbit</button>
+</form>
+<a asp-action="Index" class="btn btn-dark m-1 p-1">Cancel</a>

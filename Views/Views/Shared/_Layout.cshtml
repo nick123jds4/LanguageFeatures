@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link asp-href-include="~/lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body class="m-1 p-1">
+    <div class="bg-info">This is part of the layout</div>
+    @RenderSection("Header")
+    <div class="bg-info">This is part of the layout</div>
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Body")
+    }
+    else
+    {
+        <h4>This is the default footer</h4>
+    }
+    <div class="bg-info">This is part of the layout</div>
+    @RenderSection("Footer")
+    <div class="bg-info">This is part of the layout</div>
+    @RenderSection("scripts", false)
+</body>
+</html>

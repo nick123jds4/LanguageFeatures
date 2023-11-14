@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment names="development">
+        <script asp-src-include="~/lib/js/dist/j*.js" 
+                asp-src-exclude="**.slim.**,**.min.**"
+                asp-append-version="true"></script>
+    </environment>
+    <environment names="staging, production">
+        <script asp-src-include="~/lib/js/dist/*.min.js" 
+                asp-src-exclude="**.slim.**"
+                asp-append-version="true"></script>
+    </environment>
+    @*<link href="https://cdn.jsdelivrFAIL.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          asp-fallback-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-fallback-href-exclude="**/*-reboot*,**/*-grid*"
+          asp-fallback-test-class="btn"
+          asp-fallback-test-property="display"
+          asp-fallback-test-value="inline-block"
+          rel="stylesheet" />*@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="m-1 p-1">
+    <img src="/images/city.png" asp-append-version="true" alt="Alternate Text" /> 
+    <cache expires-sliding="@TimeSpan.FromSeconds(15)"
+           vary-by-route="action">
+        @await Component.InvokeAsync("Time")
+    </cache>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@{ Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link asp-href-include="~/lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <script id="jsonData" type="application/json">
+        @Json.Serialize(new[] { "Home", "List", "Edit" })
+    </script>
+    <script asp-src-include="~/lib/jquery/dist/*.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var list = $("#list");
+            JSON.parse($("#jsonData").text()).forEach(function (textJson) {
+                console.log("value: " + textJson);
+                list.append($("<li>").text(textJson));
+            });
+        });
+    </script>
+</head>
+<body class="m-1 p-1">
+    This is the List view
+    @Html.Partial("MyPartial")
+    <br />
+    <h4>Strongly type:</h4>
+    @Html.Partial("MyStronglyTypedPartial", new[] { "Home", "List", "Edit" })
+    <br />
+    <h4>From Json:</h4>
+    <ul id="list"></ul>
+</body>
+</html>

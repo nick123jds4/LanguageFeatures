@@ -1,0 +1,21 @@
+﻿@model Person
+
+<div class="bg-primary m-1 p-1 text-white"><h2>Person</h2></div>
+
+<table class="table table-sm table-bordered table-striped">
+    <tr><th>Id:</th><td>@Model.Id</td></tr>
+    <tr><th>Firs Name:</th><td>@Model.FirstName</td></tr>
+    <tr><th>Last Name:</th><td>@Model.LastName</td></tr>
+    <tr><th>Role:</th><td>@Model.Role</td></tr>
+    <tr><th>City:</th><td>@Model.HomeAddress?.City</td></tr>
+    <tr><th>Country:</th><td>@Model.HomeAddress?.Country</td></tr>
+</table>
+<a asp-action="Create" class="btn btn-primary m-1">Create</a>
+<br />
+<a asp-action="Names" class="btn btn-primary m-1">Names</a>
+<br />
+<a asp-action="Address" class="btn btn-primary m-1">Address</a>
+<br />
+<a asp-action="Header" class="btn btn-primary m-1">Header</a>
+<br />
+<a asp-action="Body" class="btn btn-primary m-1">Body</a>

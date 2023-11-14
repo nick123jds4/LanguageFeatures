@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dependency injection</title>
+    <link asp-href-include="~/lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+</head>
+<body class="m-1 p-1">
+    @if (Model is string)
+    {
+        <p>@Model</p>
+    } else if (Model is IDictionary<string, string> dict) { 
+
+<table class="table table-sm table-striped table-bordered">
+    <thead><tr><th>Name</th><th>Value</th></tr></thead>
+    <tbody>
+        @foreach (var keyValue in dict)
+	{ 
+        <tr>
+            <td>@keyValue.Key</td>
+            <td>@keyValue.Value</td>
+        </tr>
+	}
+        
+    </tbody>
+</table>
+
+    }
+     
+</body>
+</html>
