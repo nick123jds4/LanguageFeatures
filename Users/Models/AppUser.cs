@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Users.Models
 {
-    public class AppUser: IdentityUser
+    /// <summary>
+    /// Класс пользователя
+    /// </summary>
+    public class AppUser : IdentityUser
     {
-
+        public Cities City { get; set; }
+        /// <summary>
+        /// Уровень квалификации
+        /// </summary>
+        public QualificationLevels Qualifications { get; set; }
     }
 }

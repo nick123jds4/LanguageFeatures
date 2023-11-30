@@ -1,16 +1,18 @@
 ﻿@model Dictionary<string, object>
+@{
+    ViewBag.Title = "User Details";
+}
 
-    <div class="bg-primary m-1 p-1 text-white"><h4>User Details</h4></div>
-    <table class="table table-sm table-bordered m-1 p-1">
-        @foreach (var val in Model)
-        {
+<table class="table table-sm table-bordered m-1 p-1">
+    @foreach (var val in Model)
+    {
         <tr>
             <th>@val.Key</th>
             <td>@val.Value</td>
         </tr>
-        }
-    </table>
-    <div class="d-flex flex-row-reverse">
-        <a class="btn btn-primary m-1" asp-controller="Admin" asp-action="Index">Admin</a>
-        <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Index">Home</a>
-    </div>
+    }
+</table>
+<a class="btn btn-primary m-1" asp-controller="Home" asp-action="OtherAction">OtherAction</a>
+<a class="btn btn-primary m-1" asp-controller="Home" asp-action="NotBob">Not Bob</a>
+<a class="btn btn-primary m-1" asp-controller="Document" asp-action="Index">Protected Document</a>
+

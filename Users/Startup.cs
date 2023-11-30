@@ -1,15 +1,15 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using Users.Infrastructure;
 using Users.Models;
 
@@ -24,15 +24,57 @@ namespace Users
             Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator>();
+            services.AddSingleton<IClaimsTransformation, LocationClaimsProvider>();
+            services.AddTransient<IAuthorizationHandler, BlockUsersHandler>();
+            services.AddTransient<IAuthorizationHandler, DocumentAuthorizationHandler>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DCUsers", policy =>
+                {
+                    policy.RequireRole("Users");
+                    policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");
+                });
+
+                options.AddPolicy("NotBob", policy =>
+                {
+                    //только для аутентифицированных пользователей
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new BlockUsersRequirement("Bob"));
+                });
+
+                options.AddPolicy("AuthorsAndEditors", policy =>
+                {
+                    policy.AddRequirements(new DocumentAuthorizationRequirement
+                    {
+                        AllowAuthors = true,
+                        AllowEditors = true
+                    });
+                });
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+            .AddCookie()
+            .AddGoogle(options =>
+                {
+                    options.ClientId = "";
+                    options.ClientSecret = "";
+                    options.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/certs";
+
+                });
 
             var connectionString = Configuration.GetConnectionString("UsersIdentity");
-            services.AddDbContext<AppIdentityDbContext>(options=>options.UseSqlServer(connectionString));
-            services.AddIdentity<AppUser, IdentityRole>(options=> { 
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
@@ -43,7 +85,7 @@ namespace Users
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc(options=>options.EnableEndpointRouting=false);
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +102,7 @@ namespace Users
              */
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
+            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }

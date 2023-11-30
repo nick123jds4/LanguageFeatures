@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Users.Extentions;
@@ -6,6 +7,11 @@ using Users.Models;
 
 namespace Users.Controllers
 {
+
+    /// <summary>
+    /// Класс администрирования пользователями
+    /// </summary>
+    [Authorize(Roles = "Admins")]
     public class AdminController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
