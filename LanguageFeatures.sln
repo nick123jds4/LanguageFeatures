@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcModels", "MvcModels\MvcM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelValidation", "ModelValidation\ModelValidation.csproj", "{3E8B3479-7461-4206-8A9E-8935D0C9C975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users", "Users\Users.csproj", "{9C4D2538-B894-4535-A2FB-FC187676557A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users", "Users\Users.csproj", "{9C4D2538-B894-4535-A2FB-FC187676557A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConventionsAndConstraints", "ConventionsAndConstraints\ConventionsAndConstraints.csproj", "{0F53123E-596D-4E9B-A618-4C935FB449F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{9C4D2538-B894-4535-A2FB-FC187676557A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C4D2538-B894-4535-A2FB-FC187676557A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C4D2538-B894-4535-A2FB-FC187676557A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F53123E-596D-4E9B-A618-4C935FB449F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F53123E-596D-4E9B-A618-4C935FB449F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F53123E-596D-4E9B-A618-4C935FB449F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F53123E-596D-4E9B-A618-4C935FB449F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
